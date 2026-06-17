@@ -2,25 +2,79 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #0a0a0a;
+  --page: #f7f6f4;
+  --brand: #4a2fc4;
+  --brand-dark: #3a23a0;
+  --brand-light: #f6f2ff;
+  --brand-medium: #ece6ff;
+  --hero: #1a0f5c;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-page: var(--page);
+  --color-brand: var(--brand);
+  --color-brand-dark: var(--brand-dark);
+  --color-brand-light: var(--brand-light);
+  --color-brand-medium: var(--brand-medium);
+  --color-hero: var(--hero);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --font-display: var(--font-display);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  overflow-x: hidden;
 }
 
 body {
-  background: var(--background);
+  background: var(--page);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
+.font-display {
+  font-family: var(--font-display), var(--font-geist-sans), system-ui, sans-serif;
+}
+
+@keyframes orb-float-a {
+  0%, 100% { transform: translate3d(0, 0, 0) rotate(0deg) scale(1); }
+  33% { transform: translate3d(18px, -24px, 0) rotate(8deg) scale(1.04); }
+  66% { transform: translate3d(-12px, 14px, 0) rotate(-6deg) scale(0.97); }
+}
+
+@keyframes orb-float-b {
+  0%, 100% { transform: translate3d(0, 0, 0) rotate(0deg) scale(1); }
+  50% { transform: translate3d(-22px, 20px, 0) rotate(-10deg) scale(1.06); }
+}
+
+@keyframes orb-shine-sweep {
+  0% { transform: translateX(-60%) translateY(-60%) rotate(0deg); opacity: 0.5; }
+  50% { transform: translateX(10%) translateY(10%) rotate(180deg); opacity: 0.9; }
+  100% { transform: translateX(-60%) translateY(-60%) rotate(360deg); opacity: 0.5; }
+}
+
+.animate-orb-a {
+  animation: orb-float-a 14s ease-in-out infinite;
+}
+
+.animate-orb-b {
+  animation: orb-float-b 18s ease-in-out infinite;
+}
+
+.animate-orb-shine {
+  animation: orb-shine-sweep 9s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-orb-a,
+  .animate-orb-b,
+  .animate-orb-shine {
+    animation: none;
+  }
 }
